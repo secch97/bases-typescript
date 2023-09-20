@@ -1,32 +1,70 @@
-// Funciones Básicas
-function sumar( a:number, b:number ):number{
-  return a + b;
+type Car = {
+  carroceria: string,
+  modelo: string,
+  antibalas: boolean,
+  pasajeros: number,
+  disparar?: ()=>void,
 }
 
-const contar = ( heroes:string[] ):number => {
-  return heroes.length;
-}
-const superHeroes = ["Flash", "Arrow", "Superman", "Linterna Verde"];
-contar(superHeroes);
 
-//Parametros por defecto
-const llamarBatman = ( llamar:boolean=true ):void => {
-  if( llamar ){
-    console.log("Batiseñal activada");
+// Objetos
+const batimovil : Car = {
+  carroceria: "Negra",
+  modelo: "6x6",
+  antibalas: true,
+  pasajeros:4
+};
+
+const bumblebee : Car = {
+  carroceria: "Amarillo con negro",
+  modelo: "4x2",
+  antibalas: true,
+  pasajeros:4,
+  disparar(){ // El metodo disparar es opcional
+    console.log("Disparando");
   }
+};
+
+
+// Villanos debe de ser un arreglo de objetos personalizados
+const villanos:{nombre:string, edad?:number,mutante:boolean}[] = [{
+  nombre:"Lex Luthor",
+  edad: 54,
+  mutante:false
+},{
+  nombre: "Erik Magnus Lehnsherr",
+  edad: 49,
+  mutante: true
+},{
+  nombre: "James Logan",
+  edad: undefined,
+  mutante: true
+}];
+
+// Multiples tipos
+// cree dos tipos, uno para charles y otro para apocalipsis
+type Charles = {
+  poder: string,
+  estatura: number,
 }
 
-llamarBatman();
-
-// Rest?
-const unirheroes = ( ...personas:string[] ):string => {
-  return personas.join(", ");
+type Apocalipsis = {
+  lider: boolean,
+  miembros: string[]
 }
 
+const charles = {
+  poder:"psiquico",
+  estatura: 1.78
+};
 
-// Tipo funcion
-const noHaceNada = ( numero:number, texto:string, booleano:boolean, arreglo:[] )=> {}
+const apocalipsis = {
+  lider:true,
+  miembros: ["Magneto","Tormenta","Psylocke","Angel"]
+}
 
-// Crear el tipo de funcion que acepte la funcion "noHaceNada"
-let noHaceNadaTampoco : (x:number, y:string, z:boolean, a:[])=>void;
-noHaceNadaTampoco = noHaceNada
+// Mystique, debe poder ser cualquiera de esos dos mutantes (charles o apocalipsis)
+let mystique : Charles | Apocalipsis;
+
+mystique = charles;
+mystique = apocalipsis;
