@@ -9,7 +9,7 @@
     class Xmen extends Mutante {
     }
     const wolverine = new Xmen("Wolverine", "Logan");
-    console.log(wolverine);
+    //console.log(wolverine);
 })();
 (() => {
     class Avenger {
