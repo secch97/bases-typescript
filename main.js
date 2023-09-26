@@ -1,73 +1,50 @@
 "use strict";
-(() => {
-    class Mutante {
-        constructor(name, realName) {
-            this.name = name;
-            this.realName = realName;
-        }
+// Crear interfaces
+;
+const conducirBatimovil = (auto) => {
+    auto.encender = true;
+    auto.velocidadMaxima = 100;
+    auto.acelerar();
+};
+const batimovil = {
+    encender: false,
+    velocidadMaxima: 0,
+    acelerar() {
+        console.log("...... gogogo!!!");
     }
-    class Xmen extends Mutante {
+};
+console.log(conducirBatimovil(batimovil));
+const guason = {
+    reir: true,
+    comer: true,
+    llorar: false
+};
+const reir = (guason) => {
+    if (guason.reir) {
+        console.log("JAJAJAJA");
     }
-    const wolverine = new Xmen("Wolverine", "Logan");
-    //console.log(wolverine);
-})();
-(() => {
-    class Avenger {
-        constructor(name, team, realName) {
-            this.name = name;
-            this.team = team;
-            this.realName = realName;
-        }
-        bio() {
-            return `${this.name} ${this.team}`;
-        }
+};
+reir(guason);
+const ciudadGotica = (ciudadanos) => {
+    return ciudadanos.length;
+};
+/*
+  propiedades:
+    - nombre
+    - edad
+    - sexo
+    - estadoCivil
+    - imprimirBio(): void // en consola una breve descripcion.
+*/
+class Persona {
+    constructor(nombre, edad, sexo, estadoCivil) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.estadoCivil = estadoCivil;
     }
-    Avenger.avgAge = 35;
-    const antman = new Avenger("Antman", "Capitan", "Scott Lang");
-    //console.log(antman);
-    //console.log(antman.bio());
-})();
-(() => {
-    class Avenger {
-        constructor(name, realName) {
-            this.name = name;
-            this.realName = realName;
-            //console.log("Constructor Avenger llamado");
-        }
-        getFullName() {
-            return `${this.name} ${this.realName}`;
-        }
+    imprimirBio() {
+        console.log("Persona");
     }
-    class Xmen extends Avenger {
-        constructor(name, realName, isMutant) {
-            super(name, realName);
-            this.isMutant = isMutant;
-            //console.log("Constructor Xmen llamado");
-        }
-        get fullName() {
-            return `${this.name} - ${this.realName}`;
-        }
-        set fullName(name) {
-            this.name = name;
-        }
-        getFullNameFromXmen() {
-            // console.log(super.getFullName())
-        }
-    }
-    const wolverine = new Xmen("Wolverine", "Logan", true);
-    //console.log(wolverine);
-    //console.log(wolverine.fullName);
-    wolverine.fullName = "Saul";
-    //console.log(wolverine.fullName);
-})();
-(() => {
-    class Apocalipsis {
-        constructor(name) {
-            this.name = name;
-        }
-    }
-    ;
-    const apocalipsis = new Apocalipsis("Soy apocalipsis");
-    console.log(apocalipsis);
-})();
+}
 //# sourceMappingURL=main.js.map

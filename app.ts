@@ -1,70 +1,86 @@
-type Car = {
-  carroceria: string,
-  modelo: string,
-  antibalas: boolean,
-  pasajeros: number,
-  disparar?: ()=>void,
-}
+// Crear interfaces
 
+// Cree una interfaz para validar el auto (el valor enviado por parametro)
 
-// Objetos
-const batimovil : Car = {
-  carroceria: "Negra",
-  modelo: "6x6",
-  antibalas: true,
-  pasajeros:4
+interface Auto {
+  encender:boolean;
+  velocidadMaxima:number;
+  acelerar: ()=>void;
 };
 
-const bumblebee : Car = {
-  carroceria: "Amarillo con negro",
-  modelo: "4x2",
-  antibalas: true,
-  pasajeros:4,
-  disparar(){ // El metodo disparar es opcional
-    console.log("Disparando");
+const conducirBatimovil = ( auto:Auto ):void => {
+  auto.encender = true;
+  auto.velocidadMaxima = 100;
+  auto.acelerar();
+}
+
+const batimovil:Auto = {
+  encender:false,
+  velocidadMaxima:0,
+  acelerar(){
+    console.log("...... gogogo!!!");
   }
-};
-
-
-// Villanos debe de ser un arreglo de objetos personalizados
-const villanos:{nombre:string, edad?:number,mutante:boolean}[] = [{
-  nombre:"Lex Luthor",
-  edad: 54,
-  mutante:false
-},{
-  nombre: "Erik Magnus Lehnsherr",
-  edad: 49,
-  mutante: true
-},{
-  nombre: "James Logan",
-  edad: undefined,
-  mutante: true
-}];
-
-// Multiples tipos
-// cree dos tipos, uno para charles y otro para apocalipsis
-type Charles = {
-  poder: string,
-  estatura: number,
 }
 
-type Apocalipsis = {
-  lider: boolean,
-  miembros: string[]
+console.log(conducirBatimovil(batimovil));
+
+// Cree una interfaz con que permita utilzar el siguiente objeto
+// utilizando propiedades opcionales
+
+interface Joker {
+  reir?: boolean;
+  comer?:boolean;
+  llorar?:boolean;
 }
 
-const charles = {
-  poder:"psiquico",
-  estatura: 1.78
-};
-
-const apocalipsis = {
-  lider:true,
-  miembros: ["Magneto","Tormenta","Psylocke","Angel"]
+const guason:Joker = {
+  reir: true,
+  comer:true,
+  llorar:false
 }
 
-// Mystique, debe poder ser cualquiera de esos dos mutantes (charles o apocalipsis)
-let mystique : Charles | Apocalipsis;
+const reir = ( guason:Joker ):void => {
+  if( guason.reir ){
+    console.log("JAJAJAJA");
+  }
+}
 
-mystique = charles;
-mystique = apocalipsis;
+reir(guason);
+
+
+// Cree una interfaz para la siguiente funcion
+
+interface CiudadGotica {
+  (ciudadanos:string[]):number
+}
+
+const ciudadGotica:CiudadGotica = (ciudadanos) => {
+  return ciudadanos.length;
+}
+
+// Cree una interfaz que obligue crear una clase
+// con las siguientes propiedades y metodos
+interface IPersona {
+  nombre: string;
+  edad: number;
+  sexo: string;
+  estadoCivil: string;
+  imprimirBio: ()=>void;
+}
+/*
+  propiedades:
+    - nombre
+    - edad
+    - sexo
+    - estadoCivil
+    - imprimirBio(): void // en consola una breve descripcion.
+*/
+class Persona implements IPersona {
+  constructor (public nombre:string, public edad:number, public sexo:string, public estadoCivil:string){
+
+  }
+
+  imprimirBio() {
+    console.log("Persona")
+  }
+}
